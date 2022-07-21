@@ -210,16 +210,14 @@ function getCommonClass(main){
   },{})
 }
 function relativeFilePath(a, b) {
-  console.log('relativeFilePath a', a)
-  console.log('relativeFilePath b', b)
   return new Array((a.split('/').length - b.split('/').length)).fill('../').join('')
 }
-async function getConfig(dirs, main) {
+async function getConfig(dirs, main, url) {
   const copyDirs = dirs.map(dir => dir)
   copyDirs.push("dist")
   return Promise.all(copyDirs.map(dir=>{
     return new Promise((resolve, reject) => {
-      http.get(`http://10.85.128.89:8000/biz-fe/bisheng-server/gulfstream/bisheng/openapi/template/version/latest?key=I7317ciMe_${dir}`, res => {
+      http.get(`${url}${dir}`, res => {
         let list = [];
         res.on('data', chunk => {
             list.push(chunk);
@@ -243,14 +241,12 @@ class MpxAtomicClassWebpackPlugin {
     apply(compiler) {
       compiler.hooks.done.tap('MpxAtomicClassWebpackPlugin',async () => {
         const files = getFiles(this.options)
-        console.log('__dirname', __dirname)
         const absoluteDirs = []
         dirs = this.options.include
         dirs.forEach(dir => {
           absoluteDirs.push(path.join(__dirname, '../../', this.options.main ,dir))
         })
-        console.log('absoluteDirs', absoluteDirs)
-        await getConfig(dirs, this.options.main)
+        await getConfig(dirs, this.options.main, this.options.url)
         await Promise.all(dirs.map(async dir => { 
           layerStylesMap[dir] = new Map()
           return Promise.all(files.map(async file => {
