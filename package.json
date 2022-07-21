@@ -1,6 +1,6 @@
 {
   "name": "miniprogram-css-webpack-plugin",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta1",
   "description": "根据小程序分包提取公共样式减少体积的webpackplugin",
   "main": "index.js",
   "scripts": {
