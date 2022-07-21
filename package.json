@@ -1,0 +1,25 @@
+{
+  "name": "miniprogram-css-webpack-plugin",
+  "version": "1.0.0-beta",
+  "description": "根据小程序分包提取公共样式减少体积的webpackplugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lxjjjjjj/miniprogram-atomic-class.git"
+  },
+  "keywords": [
+    "小程序原子类样式"
+  ],
+  "author": "lxjjjjjj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lxjjjjjj/miniprogram-atomic-class/issues"
+  },
+  "homepage": "https://github.com/lxjjjjjj/miniprogram-atomic-class#readme",
+  "dependencies": {
+    "windicss": "^3.5.4"
+  }
+}
