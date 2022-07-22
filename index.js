@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const http = require('http')
 var windicss = require("windicss");
+const { defineConfig } = require('windicss/helpers')
 var import_style = require("windicss/utils/style");
 var import_utils3 = require("@antfu/utils");
 const regexHtmlTag = /<(\w[\w-]*)([\S\s]*?)\/?>/mg;
@@ -225,7 +226,7 @@ async function getConfig(dirs, main, url) {
         res.on('end', () => {
             const { data } = JSON.parse(Buffer.concat(list).toString());
             if(dir === 'dist') dir = main
-            windiConfigMap[dir] = data.template
+            windiConfigMap[dir] = defineConfig(data.template)
             resolve()
         });
       }).on('error', err => {
